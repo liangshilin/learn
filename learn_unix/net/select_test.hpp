@@ -10,11 +10,11 @@
 
 using namespace std;
 
-class NetPoll
+class NetSelect
 {
 public:
-	NetPoll();
-	~NetPoll();
+	NetSelect() = default;
+	~NetSelect() = default;
 
 	void select_test()
 	{
@@ -112,16 +112,7 @@ public:
 	}
 
 private:
-
 };
-
-NetPoll::NetPoll()
-{
-}
-
-NetPoll::~NetPoll()
-{
-}
 
 
 #endif // !POOL_TEST_H_

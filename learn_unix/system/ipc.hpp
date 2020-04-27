@@ -3,7 +3,7 @@
 
 #include <cstdio>
 #include <errno.h>
-#include<string.h>
+#include <string.h>
 #include <csignal>
 #include <vector>
 #include <unistd.h>

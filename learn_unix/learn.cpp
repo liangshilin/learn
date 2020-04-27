@@ -8,6 +8,10 @@
 #include "stl/containers.hpp"
 #include "algorithm/array.hpp"
 #include "system/ipc.hpp"
+#include "net/udp_test.hpp"
+#include "other/heap_stack_obj.hpp"
+#include "net/socket_test.hpp"
+#include "other/utility.hpp"
 #include <random>
 #include <iostream>
 #include <thread>
@@ -15,32 +19,38 @@
 
 using namespace std;
 
-
-void test(char value[100])
+int main(int argc, char** argv)
 {
-    int size = sizeof(value);
-    printf("    %d   ", sizeof(value));
-}
 
-int main()
-{
-    char value[50];
-    printf("   %d   ", sizeof(value));
-    test(value);
-    getchar();
-    SysIPC::consumer(nullptr);
+    utility::run();
     exit(0);
 
-    SysIPC tmpIPC;
-    tmpIPC.fork_test(10);
+    NetSocket_::run1(true);
     exit(0);
 
+    // 只堆和只栈对象测试
+    //OnlyHeap stack_oh;
+    OnlyHeap* heap_oh = OnlyHeap::Create();
+    heap_oh->Destory();
+
+    OnlyStack stack_os;
+    //OnlyStack* heap_os = new OnlyStack[10];
+    //auto tmp = *heap_os;
+    //delete [] heap_os;
+
+    exit(0); //清理完调用_exit()
+
+
+
+    // 查看stl容器的大小
     vector<int> yes;
     int vector_size = sizeof(vector<int>);
     int map_size = sizeof(map<int, int>);
     int list_size = sizeof(list<int>);
     int forward_list_size = sizeof(forward_list<int>);
 
+
+    // 算法测试
     string str("abcdaefgdhijk");
     ALGStr tmpStr;
     tmpStr.maxSubStringLength(str);
